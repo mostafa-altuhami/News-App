@@ -1,10 +1,11 @@
 package com.example.newsapp.data.remote
 
+import com.example.newsapp.BuildConfig
 import com.example.newsapp.data.remote.dto.NewsResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
- const val API_KEY = "9d19b3bb33df41f390003e39aee738c1"
+ const val API_KEY = BuildConfig.NEWS_API_KEY
 
 const val BASE_URL = "https://newsapi.org/v2/"
 
