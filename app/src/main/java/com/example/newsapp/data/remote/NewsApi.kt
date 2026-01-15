@@ -4,8 +4,8 @@ import com.example.newsapp.BuildConfig
 import com.example.newsapp.data.remote.dto.NewsResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
-
- const val API_KEY = BuildConfig.NEWS_API_KEY
+//BuildConfig.NEWS_API_KEY
+val API_KEY = BuildConfig.NEWS_API_KEY
 
 const val BASE_URL = "https://newsapi.org/v2/"
 

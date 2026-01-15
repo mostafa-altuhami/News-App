@@ -1,6 +1,7 @@
 package com.example.newsapp
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -28,6 +29,7 @@ class MainActivity : ComponentActivity() {
             setKeepOnScreenCondition(condition = {viewModel.splashCondition.value})
         }
         setContent {
+            Log.d("Api_Key test", BuildConfig.NEWS_API_KEY)
             NewsAppTheme {
 
                 val darkIcons = isSystemInDarkTheme()

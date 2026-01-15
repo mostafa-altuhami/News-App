@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
@@ -6,6 +8,16 @@ plugins {
     alias(libs.plugins.ksp)
 
 }
+
+val localProperties = Properties()
+val localPropertiesFile = rootProject.file("local.properties")
+
+if (localPropertiesFile.exists()) {
+    localProperties.load(localPropertiesFile.inputStream())
+}
+
+val newsApiKey: String = localProperties.getProperty("NEWS_API_KEY") ?: ""
+
 
 android {
     namespace = "com.example.newsapp"
@@ -25,8 +37,9 @@ android {
         buildConfigField(
             "String",
             "NEWS_API_KEY",
-            "\"${project.properties["NEWS_API_KEY"]}\""
+            "\"$newsApiKey\""
         )
+
     }
 
     buildTypes {
