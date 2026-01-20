@@ -6,13 +6,13 @@ The app allows users to browse the latest news, search for articles, and read pr
 ---
 
 ## ✨ Features
-- 🗞️ Browse latest news articles
-- 🔍 Search news by keyword
-- 📄 Pagination using Paging 3
-- 📡 Fetch news from a REST API
-- 💾 Offline caching using Room (previously fetched articles)
-- ⚙️ App entry & onboarding state handled via DataStore
-- 🎨 Modern UI built with Jetpack Compose
+- Browse latest news articles
+- Search news by keyword
+- Pagination using Paging 3
+- Fetch news from a REST API
+- Offline caching using Room (previously fetched articles)
+- App entry & onboarding state handled via DataStore
+- Modern UI built with Jetpack Compose
 
 ---
 
@@ -71,6 +71,19 @@ Compose UI
 
 ---
 
+## 📸 Screenshots
+<div>
+   <img src ="screenshots/onboarding1.jpg" width ="250">
+   <img src ="screenshots/onboarding2.jpg" width ="250">
+   <img src ="screenshots/onboarding3.jpg" width ="250">
+   <img src ="screenshots/shimmer_effect.jpg" width ="250">
+   <img src ="screenshots/home.jpg" width ="250">
+   <img src ="screenshots/search.jpg" width ="250">
+   <img src ="screenshots/details.jpg" width ="250">
+   <img src ="screenshots/bookmarks.jpg" width ="250">
+</div>
+
+
 ## 🚀 Getting Started
 
 ### Prerequisites
@@ -115,7 +128,6 @@ It is stored inside `local.properties` and accessed via `BuildConfig`, preventin
 
 - Add unit tests for ViewModels  
 - Improve error and empty state handling  
-- Add article details screen  
 - Implement smarter cache invalidation  
 - UI animations & polish  
 
@@ -133,3 +145,8 @@ Android Developer
 ## ⭐ Support
 
 If you like this project, consider giving it a ⭐ on GitHub!
+
+---
+
+## 📄 License
+This project is licensed under the MIT License.
