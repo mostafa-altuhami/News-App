@@ -42,6 +42,13 @@ object AppModule {
             .create(NewsApi::class.java)
     }
 
+
+    @Provides
+    @Singleton
+    fun provideDao(
+        newsDatabase: NewsDatabase
+    ) : NewsDao = newsDatabase.dao()
+
     @Provides
     @Singleton
     fun provideNewsRepoObj(
@@ -66,9 +73,4 @@ object AppModule {
         ).build()
     }
 
-    @Provides
-    @Singleton
-    fun provideDao(
-        newsDatabase: NewsDatabase
-    ) : NewsDao = newsDatabase.dao()
 }

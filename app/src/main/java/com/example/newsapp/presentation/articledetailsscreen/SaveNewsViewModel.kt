@@ -1,10 +1,9 @@
 package com.example.newsapp.presentation.articledetailsscreen
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.newsapp.domain.model.ArticleUi
-import com.example.newsapp.domain.repository.LocalNewsRepository
+import com.example.newsapp.domain.usecases.news.GetSavedArticlesUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
@@ -13,10 +12,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SaveNewsViewModel @Inject constructor(
-    private val repository: LocalNewsRepository
+    private val getSavedArticlesUseCases: GetSavedArticlesUseCases
 ): ViewModel() {
 
-    val articles = repository.getArticles().stateIn(
+    val articles = getSavedArticlesUseCases.getArticles().stateIn(
         scope = viewModelScope,
         started = SharingStarted.Eagerly, // // Start collecting immediately to have articles ready
         initialValue = emptyList()
@@ -31,9 +30,9 @@ class SaveNewsViewModel @Inject constructor(
             }
 
             if (existingArticle != null) {
-                repository.delete(article)
+                getSavedArticlesUseCases.deleteArticle(article)
             } else {
-                repository.insert(article)
+                getSavedArticlesUseCases.insertArticle(article)
             }
         }
     }

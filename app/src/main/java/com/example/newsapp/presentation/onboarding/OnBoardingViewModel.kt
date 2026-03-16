@@ -3,10 +3,9 @@ package com.example.newsapp.presentation.onboarding
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.newsapp.domain.usecases.AppEntryUseCases
+import com.example.newsapp.domain.usecases.entryusecases.AppEntryUseCases
 import com.example.newsapp.presentation.onboarding.componert.OnBoardingEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

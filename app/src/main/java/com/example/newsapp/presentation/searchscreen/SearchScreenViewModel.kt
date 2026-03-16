@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.example.newsapp.domain.repository.GetNewsRepository
+import com.example.newsapp.domain.usecases.news.NewsUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchScreenViewModel @Inject constructor(
-    private val repo: GetNewsRepository
+    private val newsUseCases: NewsUseCases
 ) : ViewModel() {
 
     private val _query = MutableStateFlow(TextFieldValue(""))
@@ -31,8 +31,8 @@ class SearchScreenViewModel @Inject constructor(
         if (q.isEmpty())
             flowOf(PagingData.empty())
         else {
-            repo.searchNews(
-                query = q,
+            newsUseCases.searchNews(
+                searchQuery = q,
                 sources =  listOf(
                     "abc-news",
                     "al-jazeera-english",

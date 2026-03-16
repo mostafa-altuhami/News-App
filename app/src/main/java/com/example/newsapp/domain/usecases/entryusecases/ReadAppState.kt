@@ -1,4 +1,4 @@
-package com.example.newsapp.domain.usecases
+package com.example.newsapp.domain.usecases.entryusecases
 
 import com.example.newsapp.domain.manager.DataStoreManager
 import kotlinx.coroutines.flow.Flow

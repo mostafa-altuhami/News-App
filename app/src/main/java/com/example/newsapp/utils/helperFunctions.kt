@@ -34,3 +34,10 @@ fun Article?.toUiArticle () : ArticleUi {
         publishedAt = this?.publishedAt?.toDateformat() ?: "No Data"
     )
 }
+
+fun String?.cleanContent(): String {
+    return this
+        ?.replace(Regex("\\[\\+\\d+ chars]"), "")
+        ?.trim()
+        ?: ""
+}

@@ -3,6 +3,7 @@ package com.example.newsapp.presentation.articledetailsscreen
 import android.content.Intent
 import android.net.Uri
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -14,10 +15,10 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.outlined.Star
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -31,7 +32,6 @@ import androidx.navigation.NavHostController
 import com.example.newsapp.R
 import com.example.newsapp.utils.Dimens._12Dp
 import com.example.newsapp.utils.Dimens._16Dp
-import com.example.newsapp.utils.Dimens._190Dp
 import com.example.newsapp.utils.Dimens._248Dp
 import com.example.newsapp.utils.Dimens._32Dp
 import com.example.newsapp.utils.Dimens._6Dp
@@ -41,6 +41,7 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import coil.size.Size
 import com.example.newsapp.domain.model.ArticleUi
+import com.example.newsapp.utils.cleanContent
 import com.example.newsapp.utils.textEnhancement
 
 @Composable
@@ -68,7 +69,7 @@ fun ArticleDetailsScreen(
         Row (
             modifier = Modifier
                 .padding(vertical = _16Dp),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
 
             Icon(
@@ -80,54 +81,47 @@ fun ArticleDetailsScreen(
                 contentDescription = stringResource(id = R.string.arrowback_desc)
             )
 
-            Spacer(modifier = Modifier.width(_190Dp))
+            Spacer(modifier = Modifier.weight(1f))
+
+            Row (
+                modifier = Modifier.padding(end = _16Dp),
+               horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+
+                Icon(
+                    modifier = Modifier
+                        .clickable {
+                            val article = ArticleUi(
+                                title = Uri.decode(title ?: ""),
+                                content = Uri.decode(content ?: ""),
+                                url = decodedUrl,
+                                urlToImage = Uri.decode(urlToImage ?: ""),
+                                source = Uri.decode(source ?: ""),
+                                publishedAt = Uri.decode(publishedAt ?: "")
+                            )
+
+                            savedNewsViewModel.toggleSaveArticle(article)
+                        },
+                    imageVector = Icons.Outlined.Star,
+                    contentDescription = stringResource(id = R.string.star_desc)
+                )
+
+                Spacer(modifier = Modifier.width(_32Dp))
 
 
-            Icon(
-                modifier = Modifier
-                    .clickable {
-                        val article = ArticleUi(
-                            title = Uri.decode(title ?: ""),
-                            content = Uri.decode(content ?: ""),
-                            url = decodedUrl,
-                            urlToImage = Uri.decode(urlToImage ?: ""),
-                            source = Uri.decode(source ?: ""),
-                            publishedAt = Uri.decode(publishedAt ?: "")
-                        )
-
-                        savedNewsViewModel.toggleSaveArticle(article)
-                    },
-                imageVector =Icons.Outlined.Star,
-                contentDescription = stringResource(id = R.string.star_desc)
-            )
-
-            Spacer(modifier = Modifier.width(_32Dp))
-
-
-            Icon(
-                modifier = Modifier
-                    .clickable {
-                        val intent = Intent(Intent.ACTION_SEND).apply {
-                            type = "text/plain"
-                            putExtra(Intent.EXTRA_TEXT, url)
-                        }
-                        context.startActivity(Intent.createChooser(intent, "Share link with"))
-                    },
-                imageVector =Icons.Default.Share,
-                contentDescription = stringResource(id = R.string.share_desc)
-            )
-
-            Spacer(modifier = Modifier.width(_32Dp))
-
-            Icon(
-                modifier = Modifier
-                    .clickable {
-                        val intent = Intent(Intent.ACTION_VIEW, url?.toUri())
-                        context.startActivity(intent)
-                    },
-                imageVector = Icons.Default.ExitToApp,
-                contentDescription = stringResource(id = R.string.earth_desc)
-            )
+                Icon(
+                    modifier = Modifier
+                        .clickable {
+                            val intent = Intent(Intent.ACTION_SEND).apply {
+                                type = "text/plain"
+                                putExtra(Intent.EXTRA_TEXT, url)
+                            }
+                            context.startActivity(Intent.createChooser(intent, "Share link with"))
+                        },
+                    imageVector =Icons.Default.Share,
+                    contentDescription = stringResource(id = R.string.share_desc)
+                )
+            }
 
         }
 
@@ -142,6 +136,8 @@ fun ArticleDetailsScreen(
                 .data(data = urlToImage)
                 .crossfade(true)
                 .size(Size.ORIGINAL)
+                .placeholder(R.drawable.default_image)
+                .error(R.drawable.default_image)
                 .build(),
             contentDescription = stringResource(id = R.string.description_picture_of_the_article),
             contentScale = ContentScale.Crop,
@@ -149,14 +145,27 @@ fun ArticleDetailsScreen(
         )
 
         Text(
-            text = title ?: "No Data" ,
+            text = title ?: stringResource(R.string.no_content) ,
             fontWeight = FontWeight.Black
         )
 
         Text(
             modifier =  Modifier
                 .padding(top = _6Dp),
-            text = content.textEnhancement().ifEmpty { "No Data" },
+            text = (content?.textEnhancement()?.cleanContent())
+                ?: stringResource(R.string.no_content),
+        )
+
+        Text(
+            modifier = Modifier
+                .padding(top = _6Dp)
+                .clickable {
+                    val intent = Intent(Intent.ACTION_VIEW, url?.toUri())
+                    context.startActivity(intent)
+                },
+            text = stringResource(R.string.read_more),
+            fontWeight = FontWeight.Medium,
+            color = MaterialTheme.colorScheme.primary
         )
 
     }
