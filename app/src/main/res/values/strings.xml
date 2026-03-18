@@ -21,4 +21,6 @@
     <string name="onboarding_page3_title">Fast &amp; Reliable</string>
     <string name="onboarding_page3_description">Enjoy breaking news alerts and in-depth articles, all in one easy-to-use app.</string>
     <string name="no_content">No Data</string>
+    <string name="refresh">Refresh</string>
+    <string name="something_went_wrong">Something went wrong</string>
 </resources>

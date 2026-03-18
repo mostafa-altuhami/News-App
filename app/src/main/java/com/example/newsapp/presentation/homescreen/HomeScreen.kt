@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,14 +25,11 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.newsapp.R
 import com.example.newsapp.presentation.common.Articles
 import com.example.newsapp.presentation.common.SearchBarSection
-import com.example.newsapp.presentation.homescreen.component.TopImage
+import com.example.newsapp.presentation.homescreen.component.TopSection
 import com.example.newsapp.presentation.navgraph.Route
 import com.example.newsapp.utils.Dimens._10Dp
 import com.example.newsapp.utils.Dimens._12Dp
 import com.example.newsapp.utils.Dimens._14Sp
-import com.example.newsapp.utils.Dimens._150Dp
-import com.example.newsapp.utils.Dimens._16Dp
-import com.example.newsapp.utils.Dimens._60Dp
 import com.example.newsapp.utils.Dimens._8Dp
 
 @Composable
@@ -64,11 +60,12 @@ fun HomeScreen(
             .fillMaxSize()
     ) {
 
-        TopImage(
-            modifier = Modifier
-                .size(width = _150Dp, height = _60Dp)
-                .padding(top = _16Dp),
-            image = painterResource(id = R.drawable.app_name)
+        TopSection(
+            modifier = Modifier,
+            image = painterResource(id = R.drawable.app_name),
+            onClick = {
+                news.refresh()
+            }
         )
 
         SearchBarSection(

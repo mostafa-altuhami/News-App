@@ -73,6 +73,7 @@ fun ArticleCard(
                 .size(_96Dp)
                 .clip(RoundedCornerShape(_12Dp)),
             model = article.urlToImage,
+            placeholder = painterResource(id = R.drawable.default_image),
             contentDescription = stringResource(R.string.description_picture_of_the_article),
             contentScale = ContentScale.Crop
         )

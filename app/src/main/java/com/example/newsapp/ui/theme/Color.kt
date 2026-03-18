@@ -7,6 +7,8 @@ val PurpleGrey80 = Color(0xFFCCC2DC)
 val Pink80 = Color(0xFFEFB8C8)
 val SelectedIndicator = Color(0xFF427ABD)
 val UnSelectedIndicator = Color(0xFF686C70)
+val ButtonColor = Color(0xFF287ABD)
+
 
 val Purple40 = Color(0xFF6650a4)
 val PurpleGrey40 = Color(0xFF625b71)

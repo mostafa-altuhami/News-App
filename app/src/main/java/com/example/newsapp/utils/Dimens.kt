@@ -10,6 +10,7 @@ object Dimens {
     val _40Dp = 40.dp
     val _42Dp = 42.dp
     val _32Dp = 32.dp
+    val _28Sp = 28.sp
     val _30Dp = 30.dp
     val _14Dp = 14.dp
     val _8Dp = 8.dp
@@ -24,9 +25,11 @@ object Dimens {
     val _1Dp = 1.dp
     val _16Dp = 16.dp
     val _18Dp = 18.dp
-    val _150Dp = 150.dp
+    val _48Dp = 48.dp
     val _60Dp = 60.dp
+    val _150Dp = 150.dp
+    val _90Dp = 90.dp
     val _120Dp = 120.dp
-    val _190Dp = 190.dp
+    val _280DP = 280.dp
     val _248Dp = 248.dp
 }
